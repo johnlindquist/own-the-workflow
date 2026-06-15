@@ -1,0 +1,28 @@
+node_modules/
+
+# Build output
+.svelte-kit/
+build/
+dist/
+.vercel/
+.netlify/
+.wrangler/
+
+# Local environment and publish state
+.env
+.env.*
+!.env.example
+.herenow/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Verification and agent scratch
+verification-screenshots/
+runs/
+tmp/
+.fusion-runs/
+.hitl-choice/
+.packx_cache/
