@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import logomark from '$lib/assets/brand/logomark-skeuo.png';
+	import codexWorkshopQr from '$lib/assets/links/codex-workshop-qr.svg';
 	import githubQr from '$lib/assets/links/own-the-workflow-github-qr.svg';
 	import eggoAgentFirst from '$lib/assets/eggos/selecting-tools-ai-age-v2/08-agent-first-five.png';
 	import eggoAskRepo from '$lib/assets/eggos/selecting-tools-ai-age-v2/07-ask-the-repo.png';
@@ -389,17 +390,17 @@
 {#snippet LinksVisual(slide: ToolSlide)}
 	<div class="resource-board">
 		<a class="qr-card" href={slide.visual.links?.[0]} target="_blank" rel="noreferrer">
+			<small>source</small>
 			<img src={githubQr} alt="QR code for github.com/johnlindquist/own-the-workflow" />
-			<span>{slide.visual.stamp}</span>
+			<strong>Slides repo</strong>
+			<span>github.com/johnlindquist/own-the-workflow</span>
 		</a>
-		<div class="resource-links">
-			{#each slide.visual.items ?? [] as item, itemIndex (item)}
-				<a href={slide.visual.links?.[itemIndex]} target="_blank" rel="noreferrer">
-					<small>{itemIndex === 0 ? 'source' : 'workshop'}</small>
-					<strong>{item}</strong>
-				</a>
-			{/each}
-		</div>
+		<a class="qr-card" href={slide.visual.links?.[1]} target="_blank" rel="noreferrer">
+			<small>workshop</small>
+			<img src={codexWorkshopQr} alt="QR code for egghead.io/workshop/codex" />
+			<strong>Codex Power User Workshop</strong>
+			<span>egghead.io/workshop/codex</span>
+		</a>
 	</div>
 {/snippet}
 
@@ -1347,13 +1348,12 @@
 
 	.resource-board {
 		display: grid;
-		grid-template-columns: minmax(230px, 0.75fr) minmax(260px, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 18px;
 		align-items: stretch;
 	}
 
-	.qr-card,
-	.resource-links a {
+	.qr-card {
 		border: 2px solid var(--navy);
 		border-radius: 22px;
 		background: var(--shell-grad);
@@ -1367,17 +1367,14 @@
 	}
 
 	.qr-card:hover,
-	.qr-card:focus-visible,
-	.resource-links a:hover,
-	.resource-links a:focus-visible {
+	.qr-card:focus-visible {
 		background: var(--yolk-grad);
 		box-shadow: var(--shadow-well);
 		transform: translateY(4px);
 		outline: none;
 	}
 
-	.qr-card:active,
-	.resource-links a:active {
+	.qr-card:active {
 		box-shadow: inset 0 3px 5px rgba(32, 44, 60, 0.28);
 		transform: translateY(6px);
 	}
@@ -1404,28 +1401,17 @@
 		overflow-wrap: anywhere;
 	}
 
-	.resource-links {
-		display: grid;
-		gap: 16px;
-		align-content: center;
-	}
-
-	.resource-links a {
-		padding: 24px;
-		display: grid;
-		gap: 8px;
-	}
-
-	.resource-links small {
+	.qr-card small {
 		color: var(--rust);
 		font-size: clamp(16px, 1.1vw, 20px);
 		font-weight: 1000;
 		text-transform: uppercase;
 	}
 
-	.resource-links strong {
-		font-size: clamp(31px, 2.55vw, 52px);
-		line-height: 0.98;
+	.qr-card strong {
+		font-size: clamp(22px, 1.7vw, 34px);
+		line-height: 1;
+		text-align: center;
 	}
 
 	@media (max-height: 760px) and (min-width: 1101px) {

@@ -4,13 +4,13 @@ export const toolSlides: ToolSlide[] = [
 	{
 		id: 'title',
 		kind: 'title',
-		eyebrow: 'the new tool question',
-		title: 'Choose Tools You Can Own',
+		eyebrow: 'Choosing Tools in the AI Era',
+		title: 'Riding the Clone Wave',
 		point:
 			'AI makes software easier to build. Open source makes it easier to inspect, change, and replace.',
 		visual: {
 			stamp: 'new question',
-			items: ['buy the app?', 'can I own the workflow?']
+			items: ['buy the app?', 'build it myself?']
 		},
 		eggoPrompt:
 			'Transparent-background tactile egghead/eggo character holding a small toolbox in one hand and a wiring diagram in the other, soft studio light, clay-like texture.'
