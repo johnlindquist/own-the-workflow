@@ -20,7 +20,7 @@ The static site is written to `build/`.
 
 ## Links
 
-- Live presentation: https://vast-wreath-hrsa.here.now/slides/selecting-tools-ai-age?present=1#title
+- Live presentation: https://bold-shrine-g6nm.here.now/slides/selecting-tools-ai-age?present=1#title
 - Slides repo: https://github.com/johnlindquist/own-the-workflow
 - Codex Power User Workshop: https://egghead.io/workshop/codex
 
