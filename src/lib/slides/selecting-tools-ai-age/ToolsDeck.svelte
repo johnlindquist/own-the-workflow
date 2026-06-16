@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import logomark from '$lib/assets/brand/logomark-skeuo.png';
 	import codexWorkshopQr from '$lib/assets/links/codex-workshop-qr.svg';
@@ -25,9 +24,9 @@
 	let { slides }: { slides: ToolSlide[] } = $props();
 
 	let index = $state(0);
+	let presenting = $state(false);
 	const total = $derived(slides.length);
 	const current = $derived(slides[index] ?? slides[0]);
-	const presenting = $derived(page.url.searchParams.get('present') === '1');
 	const progress = $derived(total > 0 ? ((index + 1) / total) * 100 : 0);
 	const eggoBySlide: Record<string, string> = {
 		title: eggoTitle,
@@ -81,6 +80,8 @@
 	};
 
 	onMount(() => {
+		presenting = new URL(window.location.href).searchParams.get('present') === '1';
+
 		const applyRequestedSlide = () => {
 			const url = new URL(window.location.href);
 			const requested = url.searchParams.get('slide') ?? window.location.hash.slice(1);
@@ -131,7 +132,7 @@
 <main class="tools-deck" class:presenting data-shift="day">
 	{#if !presenting}
 		<nav class="deck-nav" aria-label="Slide navigation">
-			<a class="nav-key" href="/slides">all variations</a>
+			<a class="nav-key" href="/slides/selecting-tools-ai-age">all variations</a>
 			<div class="nav-dots" aria-label="Slide picker">
 				{#each slides as slide, slideIndex (slide.id)}
 					<button
@@ -149,7 +150,7 @@
 	{/if}
 
 	<section class="stage" aria-live="polite">
-		<article class="slide kind-{current.kind}" data-slide-id={current.id}>
+		<article id={current.id} class="slide kind-{current.kind}" data-slide-id={current.id}>
 			<a class="brand-tab" href="https://egghead.io/" target="_blank" rel="noreferrer">
 				<img src={logomark} alt="" aria-hidden="true" draggable="false" />
 				<span>egghead.io</span>
